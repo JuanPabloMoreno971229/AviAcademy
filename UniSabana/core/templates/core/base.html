@@ -24,7 +24,7 @@
         {% block content %}{% endblock %}
         <!--=========================================-->
 
-        <footer class="iq-footer">
+        {% comment %} <footer class="iq-footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> {% endcomment %}
         <!-- Backend Bundle JavaScript -->
         <script src="{% static 'core/assets/js/backend-bundle.min.js' %}"></script>
 
