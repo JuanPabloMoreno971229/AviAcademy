@@ -11154,9 +11154,7 @@ a.text-purple:focus {
   }
 
   .iq-sidebar .device-search,
-  .iq-sidebar .sidebar-caption {
-    display: none;
-  }
+
 
   body.sidebar-main .iq-sidebar {
     width: 260px;

@@ -1,7 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
 from django.http import JsonResponse
-import openai
+#import openai
 
 #openai_api_key = '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'
 #openai.api_key = openai_api_key
@@ -17,6 +17,9 @@ class SingInPageView(TemplateView):
 
 class SingOutPageView(TemplateView):
     template_name = "core/signout.html"
+    
+class TestGeneratorView(TemplateView):
+    template_name = "core/testGenerator.html"
 
 class ChatPageView(TemplateView):
     template_name = "core/chat.html"
