@@ -1,10 +1,10 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
 from django.http import JsonResponse
-#import openai
+import openai
 
-#openai_api_key = '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'
-#openai.api_key = openai_api_key
+openai_api_key = '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'
+openai.api_key = openai_api_key
 
 
 
@@ -21,6 +21,9 @@ class SingOutPageView(TemplateView):
 class TestGeneratorView(TemplateView):
     template_name = "core/testGenerator.html"
 
+class TestEditorView(TemplateView):
+    template_name = "core/testEditor.html"
+
 class ChatPageView(TemplateView):
     template_name = "core/chat.html"
     def get(self, request, *args, **kwargs):
@@ -31,7 +34,7 @@ class ChatPageView(TemplateView):
 
         try:
             # Llamar a la función ask_openai para obtener una respuesta de OpenAI
-            response = "Aqui estoy"#self.ask_openai(message)
+            response = self.ask_openai(message)
 
             # Devolver la respuesta en un JSON
             return JsonResponse({'message': message, 'response': response})
@@ -39,24 +42,24 @@ class ChatPageView(TemplateView):
             # Manejar cualquier excepción que pueda ocurrir y devolver un mensaje de error
             return JsonResponse({'error': str(e)})
 
-    # def ask_openai(self, message):
-    #     print("hola")
-    #     try:
-    #         response = openai.Completion.create(
-    #             model="text-davinci-003",
-    #             prompt=message,
-    #             max_tokens=20,
-    #             n=1,
-    #             stop=None,
-    #             temperature=0.7,
-    #         )
-    #         print(message)
-    #         print("Bien")
-    #         answer = response.choices[0].text.strip()
-    #         print(response)
-    #         return answer
-    #     except Exception as e:
-    #         # Manejar cualquier excepción que pueda ocurrir al interactuar con OpenAI
-    #         return f"Error: {str(e)}"
+    def ask_openai(self, message):
+        print("hola")
+        try:
+             response = openai.Completion.create(
+                 model="text-davinci-003",
+                 prompt=message,
+                 max_tokens=20,
+                 n=1,
+                 stop=None,
+                 temperature=0.7,
+             )
+             print(message)
+             print("Bien")
+             answer = response.choices[0].text.strip()
+             print(response)
+             return answer
+        except Exception as e:
+             # Manejar cualquier excepción que pueda ocurrir al interactuar con OpenAI
+             return f"Error: {str(e)}"
         
 
