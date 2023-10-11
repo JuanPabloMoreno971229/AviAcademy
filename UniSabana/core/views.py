@@ -1,5 +1,5 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import openai
 
@@ -34,14 +34,15 @@ class TestGeneratorView(TemplateView):
             response = self.ask_openai(message)
 
             # Devolver la respuesta en un JSON
+            print(4)
             return JsonResponse({'message': message, 'response': response})
         except Exception as e:
             # Manejar cualquier excepción que pueda ocurrir y devolver un mensaje de error
             return JsonResponse({'error': str(e)})
     def ask_openai(self, message):
         print(message)
-        return("hola")
-    
+        return redirect("TestEditor")
+        
 
 class TestEditorView(TemplateView):
     template_name = "core/testEditor.html"

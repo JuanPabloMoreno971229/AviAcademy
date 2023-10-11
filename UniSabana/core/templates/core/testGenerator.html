@@ -85,7 +85,8 @@
       " escribe el examen, no inicies saludando de ninguna forma ni finalices dando alguna clase de exito, recomendacion..."
       let promp = "Hola "+tipo.value+dificultad.value+tema.value+preguntas.value +referencias.value;
       chan.innerHTML = prompt;
-      console.log(prompt)
+      //console.log(prompt)
+      window.location.href = "../test-editor/?prompt="+prompt;
       
       fetch('', {
          method: 'POST',

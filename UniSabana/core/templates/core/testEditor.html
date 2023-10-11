@@ -12,7 +12,7 @@
                    <h3 class="mb-2">Creador de examen</h3>
                    <p id="chan">Esta herramienta te permitira crear examenes a partir de ciertos parametros especificos, por favor llena todos los campos y dale ckick al boton de enviar para recibir tu examen personalizado.</p>
                    <div style="background-color: white; border-color: black; border-radius: 5px; border: solid 2px">
-                    <p contenteditable="True"> AQUI ESTARA EL EXAMEN PARA EDITAR</p>
+                    <p contenteditable="True" id="editor"> AQUI ESTARA EL EXAMEN PARA EDITAR</p>
                    </div>
                    <button class="btn btn-primary" style="margin-top: 10px;">Crear archivo para moodle</button>
                 </div>
@@ -21,5 +21,15 @@
        </div>
     </section>
 </div>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const prompt = urlParams.get('prompt')
+    const editor = document.getElementById("editor")
+    
+    console.log(prompt);
+    editor.innerHTML = prompt
+
+</script>
 
 {%endblock%}
