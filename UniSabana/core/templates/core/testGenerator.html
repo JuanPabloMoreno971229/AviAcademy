@@ -11,7 +11,8 @@
                    </div>  
                    <h3 class="mb-2">Creador de examen</h3>
                    <p id="chan">Esta herramienta te permitira crear examenes a partir de ciertos parametros especificos, por favor llena todos los campos y dale ckick al boton de enviar para recibir tu examen personalizado.</p>
-                   <form class = "testform" >
+                   <form class = "testform" method="post" >
+                     {%csrf_token%}
                       <div class="row">
                          <div class="col-lg-12">
                             <label>Tipo</label>
@@ -64,7 +65,6 @@
     </section>
     </div>
   <script>
-
    const messageForm = document.querySelector(".testform")
    const chan = document.getElementById("chan")
 
@@ -85,10 +85,25 @@
       " escribe el examen, no inicies saludando de ninguna forma ni finalices dando alguna clase de exito, recomendacion..."
       let promp = "Hola "+tipo.value+dificultad.value+tema.value+preguntas.value +referencias.value;
       chan.innerHTML = prompt;
-
-      window.location.href = "{% url 'TestEditor' %}"
-
+      console.log(prompt)
+      
+      fetch('', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+         body: new URLSearchParams({
+           'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+           'prompt': prompt
+         })
+       })
+       .then(response => response.json())
+         .then(data => {
+           const response = data.response;
+           console.log("hola")
+         });
+      
+      
    })
+
    
   </script>
   
