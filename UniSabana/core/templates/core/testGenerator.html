@@ -86,23 +86,24 @@
       let promp = "Hola "+tipo.value+dificultad.value+tema.value+preguntas.value +referencias.value;
       chan.innerHTML = prompt;
       //console.log(prompt)
-      window.location.href = "../test-editor/?prompt="+prompt;
       
       fetch('', {
          method: 'POST',
          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
          body: new URLSearchParams({
-           'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-           'prompt': prompt
+            'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'prompt': prompt
          })
-       })
-       .then(response => response.json())
-         .then(data => {
-           const response = data.response;
-           console.log("hola")
-         });
+      })
+      .then(response => response.json())
+      .then(data => {
+         const response = data.response;
+         console.log(response)
+         console.log("hola")
+         window.location.href = "../test-editor/?prompt="+response;
+      });
       
-      
+
    })
 
    
