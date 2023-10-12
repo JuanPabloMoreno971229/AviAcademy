@@ -59,39 +59,39 @@ class TestGeneratorView(TemplateView):
         except Exception as e:
             response = """
                 Pregunta 1: ¿Cuál es el objetivo principal del substring mining en minería de datos?
-                A) Identificar patrones de búsqueda
-                B) Encontrar subcadenas en una secuencia
-                C) Clasificar grandes conjuntos de datos
-                D) Generar números pseudoaleatorios
-                ANSWER: B
-
-                Pregunta 2: ¿Qué es la longitud mínima de un substring para que sea considerado relevante en el proceso de substring mining?
-                A) 1
-                B) 2
-                C) 3
-                D) 4
-                ANSWER: A
-
-                Pregunta 3: En el contexto del substring mining, ¿qué es la "cobertura" de un substring?
-                A) El número de secuencias en las que aparece el substring
-                B) La longitud total del substring
-                C) El número de caracteres distintos en el substring
-                D) La probabilidad de ocurrencia del substring
-                ANSWER: A
-
-                Pregunta 4: ¿Cuál es una técnica comúnmente utilizada en substring mining para encontrar subcadenas con alta ocurrencia?
-                A) Algoritmo de Dijkstra
-                B) Algoritmo de ordenación rápida
-                C) Algoritmo Apriori
-                D) Algoritmo de Euclides
-                ANSWER: C
-
-                Pregunta 5: ¿Qué métrica se utiliza para evaluar la calidad de los resultados en substring mining?
-                A) Precisión
-                B) Recall
-                C) F1-score
-                D) Coeficiente de correlación
-                ANSWER: C
+                ||A) Identificar patrones de búsqueda
+                ||B) Encontrar subcadenas en una secuencia
+                ||C) Clasificar grandes conjuntos de datos
+                ||D) Generar números pseudoaleatorios
+                ||ANSWER: B
+                ||
+                ||Pregunta 2: ¿Qué es la longitud mínima de un substring para que sea considerado relevante en el proceso de substring mining?
+                ||A) 1
+                ||B) 2
+                ||C) 3
+                ||D) 4
+                ||ANSWER: A
+                ||
+                ||Pregunta 3: En el contexto del substring mining, ¿qué es la "cobertura" de un substring?
+                ||A) El número de secuencias en las que aparece el substring
+                ||B) La longitud total del substring
+                ||C) El número de caracteres distintos en el substring
+                ||D) La probabilidad de ocurrencia del substring
+                ||ANSWER: A
+                ||
+                ||Pregunta 4: ¿Cuál es una técnica comúnmente utilizada en substring mining para encontrar subcadenas con alta ocurrencia?
+                ||A) Algoritmo de Dijkstra
+                ||B) Algoritmo de ordenación rápida
+                ||C) Algoritmo Apriori
+                ||D) Algoritmo de Euclides
+                ||ANSWER: C
+                ||
+                ||Pregunta 5: ¿Qué métrica se utiliza para evaluar la calidad de los resultados en substring mining?
+                ||A) Precisión
+                ||B) Recall
+                ||C) F1-score
+                ||D) Coeficiente de correlación
+                ||ANSWER: C
                 """
              # Manejar cualquier excepción que pueda ocurrir al interactuar con OpenAI
             print("F")

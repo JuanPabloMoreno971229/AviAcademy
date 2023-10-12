@@ -18779,6 +18779,7 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-right {
 }
 
 .noteplus-layout .ql-toolbar.ql-snow {
+  display: none;
   position: absolute;
   top: 18px;
 }

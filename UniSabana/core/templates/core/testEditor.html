@@ -29,7 +29,8 @@
     const editor = document.getElementById("editor")
       
       console.log(prompt);
-      editor.innerHTML = prompt
+      rep =prompt.toString().replaceAll("||","<br>")
+      editor.innerHTML = rep
     
 
 </script>
