@@ -15,7 +15,7 @@
                    <div style="background-color: white; border-color: black; border-radius: 5px; border: solid 2px">
                     <p contenteditable="True" id="editor"> AQUI ESTARA EL EXAMEN PARA EDITAR</p>
                    </div>
-                   <button class="btn btn-primary" style="margin-top: 10px;">Crear archivo para moodle</button>
+                   <button class="btn btn-primary" style="margin-top: 10px;" id ="downloadButton">Crear archivo para moodle</button>
                 </div>
              </div>
           </div>
@@ -23,14 +23,36 @@
     </section>
 </div>
 <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const prompt = urlParams.get('prompt')
-    const editor = document.getElementById("editor")
+   const queryString = window.location.search;
+   const urlParams = new URLSearchParams(queryString);
+   const prompt = urlParams.get('prompt')
+   const editor = document.getElementById("editor")
+
+   rep =prompt.toString().replaceAll("||","<br>")
+   editor.innerHTML = rep
       
-      console.log(prompt);
-      rep =prompt.toString().replaceAll("||","<br>")
-      editor.innerHTML = rep
+   const boton = document.getElementById('downloadButton');
+   boton.addEventListener('click', descargarArchivo);
+
+   function descargarArchivo() {
+      // Contenido del archivo
+      const contenido = document.getElementById('editor').innerText;
+      console.log(contenido)
+
+      // Crear un objeto Blob (Binary Large Object)
+      const blob = new Blob([contenido], { type: 'text/html' });
+
+      // Crear un objeto URL (Uniform Resource Locator) para el Blob
+      const url = window.URL.createObjectURL(blob);
+
+      // Crear un elemento <a> para descargar el archivo
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Examen.txt';
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+   }
     
 
 </script>
