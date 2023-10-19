@@ -76,14 +76,29 @@
 
    messageForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      let prompt = "-Genera un examen de "+tipo.value+" con dificultad "+dificultad.value+" para alumnos universitarios con" 
-      +preguntas.value+" preguntas sobre el tema "+tema.value+". escribe el examen con el siguiente formato: (pregunta: pregunta completa)"
+      //opciones
+      let seleccionMultiple = "(pregunta: pregunta completa)"
       +" enter (Letra que respuesta 1 en mayusculas) enter (Letra que respuesta 2 en mayusculas) enter "
       +"(Letra que respuesta 3 en mayusculas) enter (Letra que respuesta 4 en mayusculas) enter "+
       "(ANSWER: Letra en mayuscula de la respuesta correcta) enter (siguiente pregunta)... no lo escribas"+
       " en forma de lista si no como texto plano,  distribuye aleatoriamente las respuestas de cada pregunta y solo"+
       " escribe el examen, no inicies saludando de ninguna forma ni finalices dando alguna clase de exito, recomendacion..."
+
+      let falsoYVerdadero = "(pregunta: pregunta completa) enter A. True enter B.False enter (ANSWER: Letra en mayuscula"+
+      " de la respuesta correcta) enter (siguiente pregunta)... no lo escribas en forma de lista si no como texto plano,  "+
+      "distribuye aleatoriamente las respuestas de cada pregunta y solo escribe el examen, no inicies saludando de ninguna forma "+
+      "ni finalices dando alguna clase de exito, recomendacion..."
+
+      //prompt
+      let prompt = "-Genera un examen de "+tipo.value+" con dificultad "+dificultad.value+" para alumnos universitarios con" 
+      +preguntas.value+" preguntas sobre el tema "+tema.value+". escribe el examen con el siguiente formato:"
       let promp = "Hola "+tipo.value+dificultad.value+tema.value+preguntas.value +referencias.value;
+      console.log(tipo.value)
+      if(tipo.value == "seleccion multiple"){
+         prompt = prompt + seleccionMultiple
+      }else if(tipo.value == "falso y verdadero"){
+         prompt = prompt + falsoYVerdadero
+      }
       chan.innerHTML = prompt;
       //console.log(prompt)
       
@@ -99,8 +114,9 @@
       .then(data => {
          const response = data.response;
          console.log(response)
-         console.log("hola")
+         console.log(prompt)
          window.location.href = "../test-editor/?prompt="+response;
+         //{%comment%}window.location.href = "../test-editor/?prompt="+response;{%endcomment%}
       });
       
 
