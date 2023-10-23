@@ -136,3 +136,5 @@ class ChatPageView(TemplateView):
              # Manejar cualquier excepción que pueda ocurrir al interactuar con OpenAI
              return f"Error: {str(e)}"
 
+class TestInstructionsView(TemplateView):
+    template_name = "core/testInstructions.html"

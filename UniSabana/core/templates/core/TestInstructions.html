@@ -1,0 +1,53 @@
+{%extends 'core/base.html' %}{% block content %} {% load static %}  
+
+<div class="wrapper">
+   {%csrf_token%}
+    <section class="login-content">
+       <div class="container h-100">
+          <div class="row justify-content-center align-items-center height-self-center">
+             <div class="col-md-5 col-sm-12 col-12 align-self-center" style="flex: 80%; max-width:80%;">
+                <div class="sign-user_card">
+                   <div class="logo-detail">            
+                         <div class="d-flex align-items-center"><img src="/static/core/assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">NotePlus</h4></div>
+                   </div>  
+                   <h3 class="mb-2">Creador de examen</h3>
+                   <p id="chan">Este es un instructivo para guiarte en como subir tu archivo TXT en SabanaPlus</p>
+                   <h4 class ="mb-3" style="margin-top: 20px;">Paso 1:</h4>
+                   <p>Una vez descargado el archivo TXT en la pagina anterior accede a tu cuenta de SabanaPlus he ingresa al curso en el que deseas implementar estas preguntas</p>
+                   <img src="/static/core/assets/images/TestInstructions/Paso1.png" class="img-fluid rounded-normal " alt="">
+                   <h4 class ="mb-3" style="margin-top: 20px;">Paso 2:</h4>
+                   <p>Una vez dentro del curso seleccionar la pestaña de "more" y clickear en el apartado que dice "Question Bank</p>
+                   <img src="/static/core/assets/images/TestInstructions/Paso2.png" class="img-fluid rounded-normal " alt="">
+                   <h4 class ="mb-3" style="margin-top: 20px;">Paso 3:</h4>
+                   <p>Dentro del banco de preguntas del curso seleccione el apartado con nombre "Questions" y despues de esto seleccione la opción "Import"</p>
+                   <img src="/static/core/assets/images/TestInstructions/Paso3.png" class="img-fluid rounded-normal " alt="">
+                   <h4 class ="mb-3" style="margin-top: 20px;">Paso 4:</h4>
+                   <p>Despues de esto debemos seleccionar en la pestaña de "file format" la opcion llamada "Aiken format" y a su vez subir el archivo arrastrandolo o dando click en el apartado llamado "import question from file" despues debemos dar click en el boton import una vez se haya subido el archivo</p>
+                   <img src="/static/core/assets/images/TestInstructions/Paso4.png" class="img-fluid rounded-normal " alt="">
+                   <h4 class ="mb-3" style="margin-top: 20px;">Paso 5:</h4>
+                   <p>Por ultimo apareceran las preguntas importadas en un recuadro y para confirmar la importacion unicamente debemos clickear el boton que dice "continue"</p>
+                   <img src="/static/core/assets/images/TestInstructions/Paso5.png" class="img-fluid rounded-normal " alt="">
+                   <h4 class ="mb-3" style="margin-top: 20px;">Añadir preguntas a un examen:</h4>
+                   <p>Para añadir las preguntas importadas a un examen unicamente debemos ingresar al apartado de "Questions" en un quiz ya existe en el modo edicion</p>
+                   <img src="/static/core/assets/images/TestInstructions/Añadir1.png" class="img-fluid rounded-normal " alt="">
+                   <p>Despues de esto seleccionar el apartado que dice "Add" arriba de cualquiera de las preguntas y seleccionar la opcion llamada "+ from question bank", alli podra seleccionar las preguntas que quiere añadir a su quiz y las importara con el boton "add selected questions to the quiz"</p>
+                   <img src="/static/core/assets/images/TestInstructions/Añadir2.png" class="img-fluid rounded-normal " alt="">
+                   <div style="display: flex; flex-direction:column">
+                      <button class="btn btn-primary" style="margin-top: 30px;" id ="homeButton" onclick="">Menu principal</button>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+</div>
+
+<script>
+   const boton = document.getElementById("homeButton");
+   boton.addEventListener('click', redir);
+   function redir(){
+      window.location.href = "../";
+   }
+</script>
+
+{%endblock%}
