@@ -137,4 +137,4 @@ class ChatPageView(TemplateView):
              return f"Error: {str(e)}"
 
 class TestInstructionsView(TemplateView):
-    template_name = "core/testInstructions.html"
+    template_name = "core/TestInstructions.html"
