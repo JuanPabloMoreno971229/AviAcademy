@@ -12,13 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
-from ms_identity_web.configuration import AADConfig
-from ms_identity_web import IdentityWebPython
-
-AAD_CONFIG = AADConfig.parse_json(file_path='aad.config.json')
-MS_IDENTITY_WEB = IdentityWebPython(AAD_CONFIG)
-ERROR_TEMPLATE = 'auth/{}.html' # for rendering 401 or other errors from msal_middleware
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +25,7 @@ SECRET_KEY = 'django-insecure-r_qm*y&9m)xgw6wt$sjq2#-gftwll_toiv_xn-n0g_+l+c@6tq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['54.145.50.222','127.0.0.1','ec2-54-145-50-222.compute-1.amazonaws.com','https://e49nfjk3d4.execute-api.us-east-1.amazonaws.com/prod','100.24.132.121']
+ALLOWED_HOSTS = ['54.145.50.222','127.0.0.1','ec2-54-145-50-222.compute-1.amazonaws.com','https://e49nfjk3d4.execute-api.us-east-1.amazonaws.com/prod','100.24.132.121','localhost','aviacademyprod.us-east-1.elasticbeanstalk.com','dltpqdmcjv7nk.cloudfront.net']
 
 
 # Application definition
@@ -58,7 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-MIDDLEWARE.append('ms_identity_web.django.middleware.MsalMiddleware')
 
 ROOT_URLCONF = 'UniSabana.urls'
 
