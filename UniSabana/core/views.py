@@ -99,7 +99,7 @@ class TestEditorView(TemplateView):
     template_name = "core/testEditor.html"
 
 class ChatPageView(TemplateView):
-    template_name = "core/chat.html"
+    template_name = "core/chat_copy.html"
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 

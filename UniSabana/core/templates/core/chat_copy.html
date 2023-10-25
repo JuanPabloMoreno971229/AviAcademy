@@ -1,0 +1,144 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="{% static 'core/assets/images/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'core/assets/css/bootstrap/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/css/bootstrap/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/css/bootstrap/bootstrap.css.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/css/backend-plugin.min.css' %}">  
+    <link rel="stylesheet" href="{% static 'core/assets/css/backend.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/vendor/remixicon/fonts/remixicon.css' %}">
+    <link rel="stylesheet" href="{% static 'core/assets/vendor/@icon/dripicons/dripicons.css' %}">  
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+     <div class="header-title">
+        <h4 class="card-title">AVI Academy</h4>
+     </div>
+  </div>
+  <div class="card-body messages-box">
+     <h5>Hola {{user.username}}</h5>
+     <ul class="list-unstyled list-unstyled messages-list">
+        <li class="media">
+           <img src="{% static 'core/assets/images/logo.png' %}" class="mr-3 avatar-70 img-fluid rounded" alt="#">
+           <div class="media-body">
+              <h5 class="mt-0 mb-1">AVI Academy</h5>
+              <div class="alert alert-success" role="alert">
+                Estamos a punto de adentrarnos en un tema interesante. Para empezar, simplemente dime cuál es el nombre del tema o concepto que te gustaría aprender. <br>Puedes escribir algo como "Derivadas" o "Álgebra".
+             </div>
+           </div>
+        </li>
+     </ul>
+  </div>
+  <div class="card-body messages-box">
+    <ul class="list-unstyled messages-list">
+      {% for chat in chats %}
+        {% if chat.user == request.user %}
+          <li class="message sent">
+            <div class="message-text">
+              <div class="message-sender">
+                <b>You</b>
+              </div>
+              <div class="message-content">
+                {{chat.message}}
+              </div>
+            </div>
+          </li>
+          <li class="message received">
+            <div class="message-text">
+              <div class="message-sender">
+                <b>AI Chatbot</b>
+              </div>
+              <div class="message-content">
+                {{chat.response}}
+              </div>
+            </div>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul> 
+  </div>
+  <form class="message-form">
+    {% csrf_token %}
+    <div class="input-group">
+      <input type="text" class="form-control message-input" placeholder="Type your message...">
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-primary btn-send">Send</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  const messagesList = document.querySelector('.messages-list');
+  const messageForm = document.querySelector('.message-form');
+  const messageInput = document.querySelector('.message-input');
+
+  messageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const message = messageInput.value.trim();
+    if (message.length === 0) {
+      return;
+    }
+
+    const messageItem = document.createElement('li');
+    messageItem.classList.add('message', 'sent');
+    messageItem.innerHTML = `
+        <li class="media my-4">
+          <img src="{% static 'core/assets/images/page-img/15.jpg' %}" class="mr-3 avatar-70 img-fluid rounded" alt="#">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">You</h5>
+            <div class="alert alert-info" role="alert">
+              ${message}
+            </div>
+          </div>
+        </li>
+        `;
+    messagesList.appendChild(messageItem);
+
+    messageInput.value = '';
+
+    fetch('', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'message': message
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        const response = data.response;
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message', 'received');
+        messageItem.innerHTML = `
+        <li class="media">
+            <img src="{% static 'core/assets/images/logo.png' %}" class="mr-3 avatar-70 img-fluid rounded" alt="#">
+            <div class="media-body">
+               <h5 class="mt-0 mb-1">AVI Academy</h5>
+               <div class="alert alert-success" role="alert">
+                ${response}
+              </div>
+            </div>
+        </li>  
+        `;
+        messagesList.appendChild(messageItem);
+      });
+  });
+</script>
