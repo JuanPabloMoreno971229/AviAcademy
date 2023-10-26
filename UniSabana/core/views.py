@@ -1,12 +1,12 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+import os
 import openai
 
-openai_api_key = 'a'
-openai.api_key = openai_api_key
 
 
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Create your views here.
 class HomePageView(TemplateView):
