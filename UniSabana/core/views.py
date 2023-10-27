@@ -6,7 +6,7 @@ import openai
 
 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -45,6 +45,8 @@ class TestGeneratorView(TemplateView):
             linea = linea.strip()
             if linea.startswith("Pregunta"):
                 formateado.append("||" + linea[12:])
+            elif linea.startswith("{"):
+                formateado.append(linea)
             elif linea.startswith("A)") or linea.startswith("B)") or linea.startswith("C)") or linea.startswith("D)") or linea.startswith("ANSWER") or  linea.startswith(""):
                 formateado.append("||" + linea)
 
@@ -65,30 +67,21 @@ class TestGeneratorView(TemplateView):
              return answer
         except Exception as e:
             response = """
-                Pregunta 1: La minería de subcadenas se utiliza para encontrar patrones en una secuencia de datos.
-                A. True
-                B. False
-                ANSWER: A
+                Pregunta 1: ¿Cuál es el nombre del álbum debut de Hozier lanzado en 2014?
+                {=Hozier =hozier =Hozier (con inicial mayúscula) =hozier (con inicial mayúscula)}
 
-                Pregunta 2: En la minería de subcadenas, una subcadena es una secuencia de caracteres que aparece en una cadena más grande.
-                A. True
-                B. False
-                ANSWER: A
+                Pregunta 2: La canción "Take Me to Church" de Hozier se convirtió en un gran éxito. ¿En qué año fue lanzada?
+                {=2013 =Dos mil trece =dos mil trece =2013 (numérico)}
 
-                Pregunta 3: La minería de subcadenas se aplica principalmente en la exploración de datos espaciales.
-                A. True
-                B. False
-                ANSWER: B
+                Pregunta 3: ¿Qué instrumento musical toca Hozier además de cantar?
+                {=Guitarra =guitarra =La guitarra =la guitarra}
 
-                Pregunta 4: La minería de subcadenas es una técnica que se utiliza para buscar patrones en texto, genómica y otras áreas.
-                A. True
-                B. False
-                ANSWER: A
+                Pregunta 4: ¿Cuál es el nombre completo del cantante Hozier?
+                {=Andrew John Hozier-Byrne =Andrew Hozier-Byrne =Andrew John Hozier-Byrne (nombre y apellidos completos) =Andrew Hozier-Byrne (nombre y apellidos completos)}
 
-                Pregunta 5: El objetivo principal de la minería de subcadenas es encontrar todas las subcadenas posibles en una secuencia dada.
-                A. True
-                B. False
-                ANSWER: B
+                Pregunta 5: La canción "Someone New" de Hozier incluye la línea "You know it is better than a one-night stand." ¿Cuál es la palabra que falta en la línea?
+                {=One =one =1 =uno}
+
                 """
              # Manejar cualquier excepción que pueda ocurrir al interactuar con OpenAI
             print("F")

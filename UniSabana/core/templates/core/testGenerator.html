@@ -20,7 +20,7 @@
                                 <select class="floating-input form-control" id="tipo">
                                     <option value ="seleccion multiple">Seleccion multiple</option>
                                     <option value ="falso y verdadero">Falso y verdadero</option>
-                                    <option value ="respuesta abierta">Respuesta abierta</option>
+                                    <option value ="respuesta corta">Respuesta corta</option>
                                 </select>
                             </div>
                             </div>
@@ -89,6 +89,14 @@
       "distribuye aleatoriamente las respuestas de cada pregunta y solo escribe el examen, no inicies saludando de ninguna forma "+
       "ni finalices dando alguna clase de exito, recomendacion..."
 
+      let respuestaCorta = 
+      "responde a esto unicamente con el campo de codigo, no escribas nada que no te pida, no saludes ni te despidas, tampoco me digas claro, aqui tienes el examen: "+
+      "Genera un examen de \"fill the blank\" con dificultad "+dificultad.value+" para alumnos universitarios con "+preguntas.value+" preguntas sobre el tema "+tema.value+". escribe el examen siguiente formato: "+
+      "Pregunta 1:(pregunta 1): /n "+
+      "{=forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta} /n /n "+
+      "Pregunta 2: (pregunta 2): "+
+      "{=forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta}... "+
+      "Cada pregunta debe tener 4 maneras de escribir la respuesta correcta"
       //prompt
       let prompt = "-Genera un examen de "+tipo.value+" con dificultad "+dificultad.value+" para alumnos universitarios con" 
       +preguntas.value+" preguntas sobre el tema "+tema.value+". escribe el examen con el siguiente formato:"
@@ -98,6 +106,8 @@
          prompt = prompt + seleccionMultiple
       }else if(tipo.value == "falso y verdadero"){
          prompt = prompt + falsoYVerdadero
+      }else if(tipo.value == "respuesta corta"){
+         prompt = respuestaCorta
       }
       chan.innerHTML = prompt;
       //console.log(prompt)
@@ -115,6 +125,7 @@
          const response = data.response;
          console.log(response)
          console.log(prompt)
+         
          window.location.href = "../test-editor/?prompt="+response;
          //{%comment%}window.location.href = "../test-editor/?prompt="+response;{%endcomment%}
       });
