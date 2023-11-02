@@ -1302,7 +1302,7 @@
                                                         </div>
                                                     </div>
                                                 </div> -->
-                                                {% if if user.groups.filter(name='Estudiantes').exists %}
+                                                {% if user.is_authenticated %}
                                                 <div class="col-lg-4 col-md-6" onclick="location.href='{% url 'ChatAvi' %}'" style="cursor: pointer;">
                                                     <div
                                                         class="card card-block card-stretch card-height card-bottom-border-purple note-detail">
