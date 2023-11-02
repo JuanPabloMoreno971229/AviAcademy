@@ -8,7 +8,7 @@
              <div class="col-md-5 col-sm-12 col-12 align-self-center">
                 <div class="sign-user_card">
                    <div class="logo-detail">            
-                        <a href="../"><div class="d-flex align-items-center"><img src="/static/core/assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">NotePlus</h4></div></a>
+                        <a href="../"><div class="d-flex align-items-center"><img src="/static/core/assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">NotePlus</h4></div></a>>
                    </div>  
                    <h3 class="mb-2">Creador de examen</h3>
                    <p id="chan">Este es el editor de examenes, aqui puedes ver el examen que creaste a partir de los parametros que te pedimos, ahora llego el momento de revisarlo y corregirlo de acuerdo a lo que prefieras, puedes descargarlo en un formato compatible con moodle en el boton de abajo y tambien puedes consultar nuestro instructivo de como subirlo a la plataforma en el enlace abajo del boton</p>
@@ -16,8 +16,7 @@
                     <p contenteditable="True" id="editor"> AQUI ESTARA EL EXAMEN PARA EDITAR</p>
                    </div>
                    <div style="display: flex; flex-direction:column">
-                      <button class="btn btn-primary" style="margin-top: 10px;" id ="downloadButton">Crear archivo para moodle</button>
-                      <a href="../test-instructions/">Instructivo para subirlo a moodle</a>
+                      <button class="btn btn-primary" style="margin-top: 10px;" id ="downloadButton">Descarga tu rúbrica</button>
                    </div>
                 </div>
              </div>
@@ -51,7 +50,7 @@
       // Crear un elemento <a> para descargar el archivo
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'Examen.txt';
+      a.download = 'Rubrica.txt';
       a.click();
 
       window.URL.revokeObjectURL(url);

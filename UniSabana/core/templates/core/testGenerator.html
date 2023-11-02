@@ -6,8 +6,9 @@
           <div class="row justify-content-center align-items-center height-self-center">
              <div class="col-md-5 col-sm-12 col-12 align-self-center">
                 <div class="sign-user_card">
-                   <div class="logo-detail">            
-                         <div class="d-flex align-items-center"><img src="/static/core/assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">NotePlus</h4></div>
+                   <div class="logo-detail">
+                        <a href="javascript:history.back()"><div style="position: absolute; left: 50px;"><i class="fa-solid fa-arrow-left"></i></div></a>         
+                        <a href="../"><div class="d-flex align-items-center"><img src="/static/core/assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo"> <h4 class="logo-title ml-3">NotePlus</h4></div></a>
                    </div>  
                    <h3 class="mb-2">Creador de examen</h3>
                    <p id="chan">Esta herramienta te permitira crear examenes a partir de ciertos parametros especificos, por favor llena todos los campos y dale ckick al boton de enviar para recibir tu examen personalizado.</p>
@@ -20,7 +21,7 @@
                                 <select class="floating-input form-control" id="tipo">
                                     <option value ="seleccion multiple">Seleccion multiple</option>
                                     <option value ="falso y verdadero">Falso y verdadero</option>
-                                    <option value ="respuesta abierta">Respuesta abierta</option>
+                                    <option value ="respuesta corta">Respuesta corta</option>
                                 </select>
                             </div>
                             </div>
@@ -89,6 +90,14 @@
       "distribuye aleatoriamente las respuestas de cada pregunta y solo escribe el examen, no inicies saludando de ninguna forma "+
       "ni finalices dando alguna clase de exito, recomendacion..."
 
+      let respuestaCorta = 
+      "responde a esto unicamente con el campo de codigo, no escribas nada que no te pida, no saludes ni te despidas, tampoco me digas claro, aqui tienes el examen: "+
+      "Genera un examen de \"fill the blank\" con dificultad "+dificultad.value+" para alumnos universitarios con "+preguntas.value+" preguntas sobre el tema "+tema.value+". escribe el examen siguiente formato: "+
+      "Pregunta 1:(pregunta 1): /n "+
+      "{=forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta} /n /n "+
+      "Pregunta 2: (pregunta 2): "+
+      "{=forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta =forma de escribir respuesta correcta}... "+
+      "Cada pregunta debe tener 4 maneras de escribir la respuesta correcta"
       //prompt
       let prompt = "-Genera un examen de "+tipo.value+" con dificultad "+dificultad.value+" para alumnos universitarios con" 
       +preguntas.value+" preguntas sobre el tema "+tema.value+". escribe el examen con el siguiente formato:"
@@ -98,6 +107,8 @@
          prompt = prompt + seleccionMultiple
       }else if(tipo.value == "falso y verdadero"){
          prompt = prompt + falsoYVerdadero
+      }else if(tipo.value == "respuesta corta"){
+         prompt = respuestaCorta
       }
       chan.innerHTML = prompt;
       //console.log(prompt)
@@ -115,6 +126,7 @@
          const response = data.response;
          console.log(response)
          console.log(prompt)
+         
          window.location.href = "../test-editor/?prompt="+response;
          //{%comment%}window.location.href = "../test-editor/?prompt="+response;{%endcomment%}
       });
