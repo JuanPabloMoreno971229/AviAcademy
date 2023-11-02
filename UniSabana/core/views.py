@@ -1,15 +1,17 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, request
 from django.http import JsonResponse
 import os
 import openai
 
 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 # Create your views here.
 class HomePageView(TemplateView):
+    user_belongs_to_estudiantes = request.user.groups.filter(name='Estudiantes').exists()
     template_name = "core/index.html"
 
 class SingInPageView(TemplateView):
