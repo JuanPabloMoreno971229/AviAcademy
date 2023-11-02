@@ -7,7 +7,7 @@ global:
   branch: null
   default_ec2_keyname: AviAcademy
   default_platform: Python 3.7
-  default_region: us-west-2
+  default_region: us-east-1
   include_git_submodules: true
   instance_profile: null
   no-verify-ssl: true
