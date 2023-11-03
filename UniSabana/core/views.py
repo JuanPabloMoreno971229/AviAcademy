@@ -20,7 +20,7 @@ class SingInPageView(TemplateView):
 class SingOutPageView(TemplateView):
     template_name = "core/signout.html"
 
-@csrf_exempt  
+
 class TestGeneratorView(TemplateView):
     template_name = "core/testGenerator.html"
     
@@ -90,7 +90,7 @@ class TestGeneratorView(TemplateView):
             print("F")
             return response
         
-@csrf_exempt 
+
 class TestEditorView(TemplateView):
     template_name = "core/testEditor.html"
 
