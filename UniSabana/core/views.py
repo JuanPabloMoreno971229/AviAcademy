@@ -1,7 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.views.decorators.csrf import *
+from django.views.decorators.csrf import csrf_protect
 import os
 import openai
 
@@ -20,7 +20,7 @@ class SingInPageView(TemplateView):
 class SingOutPageView(TemplateView):
     template_name = "core/signout.html"
 
-
+@csrf_protect
 class TestGeneratorView(TemplateView):
     template_name = "core/testGenerator.html"
     
@@ -90,7 +90,7 @@ class TestGeneratorView(TemplateView):
             print("F")
             return response
         
-
+@csrf_protect
 class TestEditorView(TemplateView):
     template_name = "core/testEditor.html"
 
