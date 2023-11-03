@@ -32,3 +32,4 @@ urllib3==2.0.6
 Werkzeug==3.0.0
 wrapt==1.15.0
 openai
+uwsgi
