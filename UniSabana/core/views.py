@@ -8,10 +8,10 @@ from openai import OpenAI
 
 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI()
-client = OpenAI(api_key=os.environ.get("CUSTOM_ENV_NAME"))
+client = OpenAI(api_key=os.getenv("CUSTOM_ENV_NAME"))
 
 
 # Create your views here.
