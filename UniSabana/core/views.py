@@ -55,7 +55,7 @@ class TestGeneratorView(TemplateView):
         return "".join(formateado) + "||"
     def ask_openai(self, message):
         try:
-             response = openai.Completion.create(
+             response = openai.ChatCompletion.create(
                  model="text-davinci-003",
                  prompt=message,
                  max_tokens=200,
@@ -114,7 +114,7 @@ class ChatPageView(TemplateView):
     def ask_openai(self, message):
         print("hola")
         try:
-             response = openai.Completion.create(
+             response = openai.ChatCompletion.create(
                  model="text-davinci-003",
                  prompt=message,
                  max_tokens=200,
@@ -167,7 +167,7 @@ class RubricGeneratorView(TemplateView):
         return "".join(formateado) + "||"
     def ask_openai(self, message):
         try:
-             response = openai.Completion.create(
+             response = openai.ChatCompletion.create(
                  model="text-davinci-003",
                  prompt=message,
                  max_tokens=200,
