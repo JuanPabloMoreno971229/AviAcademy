@@ -114,19 +114,18 @@ class ChatPageView(TemplateView):
     def ask_openai(self, message):
         print("hola")
         try:
-             response = openai.ChatCompletion.create(
-                 model="text-davinci-003",
-                 prompt=message,
-                 max_tokens=200,
-                 n=1,
-                 stop=None,
-                 temperature=0.7,
-             )
-             print(message)
-             print("Bien")
-             answer = response.choices[0].text.strip()
-             print(response)
-             return answer
+            response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
+                {"role": "user", "content": message}
+            ]
+            )
+            print(message)
+            print("Bien")
+            answer = response.choices[0].text.strip()
+            print(response)
+            return answer
         except Exception as e:
              # Manejar cualquier excepción que pueda ocurrir al interactuar con OpenAI
              return f"Error: {str(e)}"
