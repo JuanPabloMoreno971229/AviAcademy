@@ -4,10 +4,14 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 import os
 import openai
+from openai import OpenAI
 
 
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+client = OpenAI()
+client = OpenAI(api_key=os.environ.get("CUSTOM_ENV_NAME"))
 
 
 # Create your views here.
@@ -114,7 +118,7 @@ class ChatPageView(TemplateView):
     def ask_openai(self, message):
         print("hola")
         try:
-            response = openai.chat.completions.create(
+            response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
