@@ -7,7 +7,7 @@ import openai
 
 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "hola"#os.getenv("OPENAI_API_KEY")
 
 
 # Create your views here.
