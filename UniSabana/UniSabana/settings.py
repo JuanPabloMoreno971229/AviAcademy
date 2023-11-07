@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'fontawesomefree',
     'core',
 ]
 
